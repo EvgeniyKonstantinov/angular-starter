@@ -1,25 +1,22 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "projects/**/*"
-  ],
+  "ignorePatterns": ["projects/**/*"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "parserOptions": {
-        "project": [
-          "tsconfig.json",
-          "e2e/tsconfig.json"
-        ],
+        "project": ["tsconfig.json", "e2e/tsconfig.json"],
         "createDefaultProgram": true
       },
       "extends": [
         "plugin:@angular-eslint/ng-cli-compat",
         "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:@angular-eslint/recommended",
+        "airbnb-typescript/base",
+        "plugin:prettier/recommended"
       ],
+      "plugins": ["prettier"],
       "rules": {
         "@angular-eslint/component-selector": [
           "error",
@@ -36,17 +33,102 @@
             "prefix": "app",
             "style": "camelCase"
           }
+        ],
+        "import/prefer-default-export": "off",
+        "@typescript-eslint/lines-between-class-members": [
+          "error",
+          "always",
+          { "exceptAfterSingleLine": true }
+        ],
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          {
+            "overrides": {
+              "constructors": "off"
+            }
+          }
+        ],
+        "@typescript-eslint/explicit-function-return-type": ["error"],
+        "@typescript-eslint/no-explicit-any": ["error"],
+        "@typescript-eslint/member-ordering": [
+          "error",
+          {
+            "default": [
+              // Index signature
+              "signature",
+              // Fields
+              "public-static-field",
+              "protected-static-field",
+              "private-static-field",
+              "public-decorated-field",
+              "protected-decorated-field",
+              "private-decorated-field",
+              "public-instance-field",
+              "protected-instance-field",
+              "private-instance-field",
+              "public-abstract-field",
+              "protected-abstract-field",
+              "private-abstract-field",
+              "public-field",
+              "protected-field",
+              "private-field",
+              "static-field",
+              "instance-field",
+              "abstract-field",
+              "decorated-field",
+              "field",
+              // Constructors
+              "public-constructor",
+              "protected-constructor",
+              "private-constructor",
+              "constructor",
+              // Methods
+              "public-static-method",
+              "protected-static-method",
+              "private-static-method",
+              "public-decorated-method",
+              "protected-decorated-method",
+              "private-decorated-method",
+              "public-instance-method",
+              "protected-instance-method",
+              "private-instance-method",
+              "public-abstract-method",
+              "protected-abstract-method",
+              "private-abstract-method",
+              "public-method",
+              "protected-method",
+              "private-method",
+              "static-method",
+              "instance-method",
+              "abstract-method",
+              "decorated-method",
+              "method"
+            ]
+          }
         ]
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended"
-      ],
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
       "rules": {}
+    },
+    {
+      "files": ["src/**/*.spec.ts", "src/**/*.d.ts"],
+      "parserOptions": {
+        "project": "./src/tsconfig.spec.json"
+      },
+      "extends": ["plugin:jest/all"],
+      "plugins": ["jest"],
+      "env": {
+        "jest/globals": true
+      },
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off",
+        "jest/prefer-expect-assertions": "off",
+        "jest/no-hooks": "off",
+        "jest/prefer-strict-equal": "off"
+      }
     }
   ]
 }

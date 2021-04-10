@@ -9,6 +9,23 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged --relative",
+      "pre-push": "ng test"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,css,less,scss,js}": [
+      "prettier --config .prettierrc --write",
+      "eslint",
+      "git add ."
+    ],
+    "*.html": [
+      "js-beautify --config .jsbeautifyrc --type 'html' --replace",
+      "git add ."
+    ]
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~11.2.9",
@@ -40,13 +57,21 @@
     "@typescript-eslint/parser": "4.16.1",
     "codelyzer": "^6.0.0",
     "eslint": "^7.6.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jest": "^24.3.4",
     "eslint-plugin-jsdoc": "30.7.6",
     "eslint-plugin-prefer-arrow": "1.2.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "husky": "^3.1.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "jest": "26.6.3",
+    "js-beautify": "^1.13.5",
     "karma-coverage": "~2.0.3",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "typescript": "~4.1.5"
