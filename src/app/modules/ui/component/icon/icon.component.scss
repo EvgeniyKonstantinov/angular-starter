@@ -1,0 +1,12 @@
+:host {
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.5rem;
+
+  .mat-icon {
+    height: inherit;
+    width: inherit;
+    display: inherit !important;
+    margin: 0 !important;
+  }
+}
