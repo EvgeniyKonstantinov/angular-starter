@@ -1,38 +1,37 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0';
-import Button from './button.component';
+import { moduleMetadata } from '@storybook/angular';
+import { text, withKnobs } from '@storybook/addon-knobs';
+import { ButtonComponent } from '../app/modules/ui/component/button/button.component';
+import { UiModule } from '../app/modules/ui/ui.module';
 
 export default {
   title: 'Example/Button',
-  component: Button,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
+  component: ButtonComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [UiModule],
+    }),
+    withKnobs,
+  ],
 } as Meta;
 
-const Template: Story<Button> = (args: Button) => ({
-  props: args,
+const Template: Story<ButtonComponent> = (args) => ({
+  props: {
+    content: text('Text', 'Test'),
+    styleType: args.styleType,
+    color: args.color,
+  },
+  template: '<app-button [color]="color" [styleType]="styleType">{{content}}</app-button>',
 });
+export const Basic = Template.bind({});
 
-export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: 'Button',
-};
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: 'Button',
-};
-
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large',
-  label: 'Button',
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
-  label: 'Button',
-};
+const iconsTemplate: Story<ButtonComponent> = (args) => ({
+  props: {
+    content: text('Text', 'Test'),
+    styleType: args.styleType,
+    color: args.color,
+  },
+  template: '<app-button [color]="color" [styleType]="styleType"><app-icon iconName="add"></app-icon></app-button>',
+});
+export const Icons = iconsTemplate.bind({});
