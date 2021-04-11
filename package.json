@@ -21,16 +21,13 @@
   "lint-staged": {
     "*.{ts,js}": [
       "prettier --config .prettierrc --write",
-      "eslint",
-      "git add ."
+      "eslint"
     ],
     "*.{css,less,scss}": [
-      "prettier --config .prettierrc --write",
-      "git add ."
+      "prettier --config .prettierrc --write"
     ],
     "*.html": [
-      "js-beautify --config .jsbeautifyrc --type 'html' --replace",
-      "git add ."
+      "js-beautify --config .jsbeautifyrc --type 'html' --replace"
     ]
   },
   "private": true,
@@ -63,6 +60,7 @@
     "@compodoc/compodoc": "^1.1.11",
     "@storybook/addon-actions": "^6.2.7",
     "@storybook/addon-essentials": "^6.2.7",
+    "@storybook/addon-knobs": "^6.2.7",
     "@storybook/addon-links": "^6.2.7",
     "@storybook/angular": "^6.2.7",
     "@types/jasmine": "~3.6.0",
