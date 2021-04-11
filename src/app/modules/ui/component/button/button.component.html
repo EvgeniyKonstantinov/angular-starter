@@ -1,0 +1,29 @@
+<ng-container [ngSwitch]="styleType">
+  <button *ngSwitchCase="'raised'" mat-raised-button [color]="color" (click)="onClick()">
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+  </button>
+  <button *ngSwitchCase="'stroked'" mat-stroked-button [color]="color" (click)="onClick()">
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+  </button>
+  <button *ngSwitchCase="'flat'" mat-flat-button [color]="color" (click)="onClick()">
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+  </button>
+  <button *ngSwitchCase="'icon'" mat-icon-button [color]="color" (click)="onClick()">
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+  </button>
+  <button *ngSwitchCase="'fab'" mat-fab [color]="color" (click)="onClick()">
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+  </button>
+  <button *ngSwitchCase="'mini_fab'" mat-mini-fab [color]="color" (click)="onClick()">
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+  </button>
+
+  <button *ngSwitchDefault mat-button [color]="color" (click)="onClick()">
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+  </button>
+
+</ng-container>
+
+<ng-template #contentTpl>
+  <ng-content></ng-content>
+</ng-template>
